@@ -20,4 +20,14 @@ function App() {
   );
 }
 
+//LO DE APP TEST
+
+//import { render, screen } from '@testing-library/react';
+//import App from './App';
+
+//test('open_to_leearn_how_works_the_thing_of_testing_nested_components', () => {
+  //render(<App />);
+//});
+
+
 export default App;

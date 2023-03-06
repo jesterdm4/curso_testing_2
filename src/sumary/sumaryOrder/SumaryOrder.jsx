@@ -54,35 +54,35 @@ const SumaryOrder = () => {
                 Scoops $6.00
             </H2>
             <Row data-testid="row-1">
-                <input type="radio"></input>
+                <input type="radio" data-testid="radio-1"></input>
                 <P data-testid="p-1">
-                    3 Vanilla
+                    Vanilla
                 </P>
             </Row>
             <H2 data-testid="h2-2">
                 Toppings $4.50
             </H2>
             <Row data-testid="row-2">
-                <input type="radio"></input>
+                <input type="radio" data-testid="radio-2"></input>
                 <P data-testid="p-2">
                     M&Ms
                 </P>
-                <input type="radio" data-testid="inputRadio-1"></input>
+                <input type="radio" data-testid="radio-3"></input>
                 <P data-testid="p-3">
                     Hot fudge
                 </P>
-                <input type="radio" data-testid="inputRadio-2"></input>
-                <P>
+                <input type="radio" data-testid="radio-4"></input>
+                <P data-testid="p-4">
                     Gummy bears
                 </P>
                 </Row>
                 <H2 data-testid="h2-3">
-                    Total : 
+                    Total:
                 </H2>
                 <Column data-testid="column-1">
                     <Row data-testid="row-3">
-                        <input type="checkbox" onClick={toggle}/>
-                        <P data-testid="p-4">I agree to the <a href='www.facebook.com'>terms and conditions</a></P>
+                        <input type="checkbox" data-testid="checkbox-1" onClick={toggle}/>
+                        <P data-testid="p-5">I agree to the <a data-testid="a-1" href='www.facebook.com'>terms and conditions</a></P>
                     </Row>
                     <Button data-testid="button-1" isGray={isGrayButtonColor} disabled={isDisable}>Confirm order</Button>
                 </Column>
