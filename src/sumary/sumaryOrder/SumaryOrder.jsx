@@ -47,46 +47,45 @@ const SumaryOrder = () => {
 
     return (
         <form>
-            <h1>
+            <h1 data-testid="h1-1">
                 Order sumary
             </h1>
-            <H2>
+            <H2 data-testid="h2-1">
                 Scoops $6.00
             </H2>
-            <Row>
+            <Row data-testid="row-1">
                 <input type="radio"></input>
-                <P>
+                <P data-testid="p-1">
                     3 Vanilla
                 </P>
             </Row>
-            <H2>
+            <H2 data-testid="h2-2">
                 Toppings $4.50
             </H2>
-            <Row>
+            <Row data-testid="row-2">
                 <input type="radio"></input>
-                <P>
+                <P data-testid="p-2">
                     M&Ms
                 </P>
-                <input type="radio"></input>
-                <P>
+                <input type="radio" data-testid="inputRadio-1"></input>
+                <P data-testid="p-3">
                     Hot fudge
                 </P>
-                <input type="radio"></input>
+                <input type="radio" data-testid="inputRadio-2"></input>
                 <P>
                     Gummy bears
                 </P>
                 </Row>
-                <H2>
+                <H2 data-testid="h2-3">
                     Total : 
                 </H2>
-                <Column>
-                    <Row>
+                <Column data-testid="column-1">
+                    <Row data-testid="row-3">
                         <input type="checkbox" onClick={toggle}/>
-                        <P>I agree to the <a href='www.facebook.com'>terms and conditions</a></P>
+                        <P data-testid="p-4">I agree to the <a href='www.facebook.com'>terms and conditions</a></P>
                     </Row>
-                    <Button isGray={isGrayButtonColor} disabled={isDisable}>Confirm order</Button>
+                    <Button data-testid="button-1" isGray={isGrayButtonColor} disabled={isDisable}>Confirm order</Button>
                 </Column>
-
         </form>
     )
 }
