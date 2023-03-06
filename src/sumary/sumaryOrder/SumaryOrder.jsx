@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const SumaryOrder = () => {
 
     const [isGrayButtonColor, setIsGrayButtonColor] = useState(true);
-
     const [isDisable, setIsDisable] = useState(true);
 
     const H2 = styled.h2`
@@ -51,48 +50,35 @@ const SumaryOrder = () => {
             <h1>
                 Order sumary
             </h1>
-
             <H2>
                 Scoops $6.00
             </H2>
-
             <Row>
                 <input type="radio"></input>
-
                 <P>
                     3 Vanilla
                 </P>
             </Row>
-
             <H2>
                 Toppings $4.50
             </H2>
-
             <Row>
                 <input type="radio"></input>
-
                 <P>
                     M&Ms
                 </P>
-
                 <input type="radio"></input>
-
                 <P>
                     Hot fudge
                 </P>
-
                 <input type="radio"></input>
-
                 <P>
                     Gummy bears
                 </P>
-
                 </Row>
-
                 <H2>
                     Total : 
                 </H2>
-
                 <Column>
                     <Row>
                         <input type="checkbox" onClick={toggle}/>
