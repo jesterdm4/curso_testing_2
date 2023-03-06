@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import SumaryOrder from './SumaryOrder';
 
-test("button has correct initial right red color, and updates when clicked", () => {
+test("checking-form-exists", () => {
   render(<SumaryOrder />);
 
   //check if the text of the button say change to blue
