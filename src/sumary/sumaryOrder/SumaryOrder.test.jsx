@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from "@testing-library/user-event";
 import SumaryOrder from './SumaryOrder';
 
 test("checking_if_texts_and_buttons/inputs_exist", () => {
@@ -75,7 +76,10 @@ test("checking_if_texts_and_buttons/inputs_exist", () => {
     expect(button1).toBeInTheDocument();
 });
 
-test('disable combo checkbox/button', ()=> {
+test('disable combo checkbox/button', async ()=> {
+
+    const user = userEvent.setup();
+
     render(<SumaryOrder />);
     
     // check that the button starts disabled 
@@ -87,7 +91,7 @@ test('disable combo checkbox/button', ()=> {
     expect(checkbox1).not.toBeChecked();
   
     //click checkBox
-    fireEvent.click(checkbox1);
+    await user.click(checkbox1);
   
     //check taht the checkbox is checked
     expect(checkbox1).toBeChecked();
@@ -96,11 +100,33 @@ test('disable combo checkbox/button', ()=> {
     expect(button1).toBeDisabled();
   
     //click checkBox
-    fireEvent.click(checkbox1);
+    await user.click(checkbox1);
   
     //check taht the checkbox its not checked
     expect(checkbox1).not.toBeChecked();
   
     //check that the button its not unabled
     expect(button1).not.toBeEnabled();
+});
+
+test ("popover respond to hoover?", async ()=> {
+  const user = userEvent.setup();
+
+  render(<SumaryOrder />);
+  
+  //probar que el popup inicia invisible
+  const nullPopover = screen.queryByText(/el helado es joda, no te hagas iluciones, equis de/i);
+  expect(nullPopover).not.toBeInTheDocument();
+
+  //texto aparece al hoovear
+  const termsAndConditions = screen.getByText(/terms and conditions/i)
+  await user.hover(termsAndConditions);
+  const popup = screen.getByText(/el helado es joda, no te hagas iluciones, equis de/i);
+  expect(popup).toBeInTheDocument();
+
+  //texto desaparece al dejar de hoovear
+  const noPopUp = screen.getByText(/terms and conditions/i)
+  await user.unhover(noPopUp);
+  screen.queryByText(/el helado es joda, no te hagas iluciones, equis de/i);
+  expect(nullPopover).not.toBeInTheDocument();
 });

@@ -39,11 +39,29 @@ const SumaryOrder = () => {
         padding-left: 10px;
     `;
 
+    const HooverP = styled.p`
+        position: absolute;
+        left: 350px;
+        width: 150px;
+    `;
+
     const toggle = ()=> {
         setIsGrayButtonColor(!isGrayButtonColor);
         setIsDisable(!isDisable);
         console.log("soy otra funcion");
     }; 
+
+    let [hoover, setHoover] = useState(false);
+
+    function hoovererTrue(e) {
+        setHoover(true);
+        console.log(hoover);
+    };
+
+    function hoovererFalse(e) {
+        setHoover(false);
+        console.log(hoover);
+    };
 
     return (
         <form data-testid="form-1">
@@ -82,7 +100,8 @@ const SumaryOrder = () => {
                 <Column data-testid="column-1">
                     <Row data-testid="row-3">
                         <input type="checkbox" data-testid="checkbox-1" onClick={toggle}/>
-                        <P data-testid="p-5">I agree to the <a data-testid="a-1" href='www.facebook.com'>terms and conditions</a></P>
+                        <P data-testid="p-5">I agree to the <a data-testid="a-1" href='www.facebook.com' onMouseOver={hoovererTrue} onMouseOut={hoovererFalse}>terms and conditions</a></P>
+                        {hoover ? (<HooverP>El helado es joda, no te hagas iluciones, equis de</HooverP>) : (null)}
                     </Row>
                     <Button data-testid="button-1" isGray={isGrayButtonColor} disabled={isDisable}>Confirm order</Button>
                 </Column>
