@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react'
+//este es mas con manejo de un solo useState el cual tiene un objeto
+
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import OrderEntry from "../../orderEntry/OrderEntry";
 
@@ -46,9 +48,7 @@ const SumaryOrder = () => {
 
     const [isGrayButtonColor, setIsGrayButtonColor] = useState(true);
     const [isDisable, setIsDisable] = useState(true);
-    const [total, setTotal] = useState(0);
-    const [flavor , setFlavor] = useState(0)
-    const [topping , setTopping] = useState(0)
+    const [ejemplo, setEjemplo] = useState({flavor:0, topping:0, total:0});
 
     const toggle = ()=> {
         setIsGrayButtonColor(!isGrayButtonColor);
@@ -69,21 +69,20 @@ const SumaryOrder = () => {
     };
 
     const handdleFlavor = num => {
-        setFlavor(num);
+        setEjemplo( prevState => {
+            return{
+                ...prevState, ...{flavor: num, total: num + ejemplo.topping}
+            }
+        });
     };    
 
     const handdleTopping = num => {
-        setTopping(num);
+        setEjemplo( prevState => {
+            return{
+                ...prevState, ...{topping: num, total: num + ejemplo.flavor}
+            }
+        });
     };    
-
-    useEffect(() => {
-        const calcker = () => {
-            setTotal(flavor + topping);
-        };
-
-        calcker()
-    }, [flavor, topping])
-    
 
     return (
         <form data-testid="form-1">
@@ -105,10 +104,10 @@ const SumaryOrder = () => {
                 <OrderEntry text="Gummy bears $0.5" price={0.5} name={"topping"} onPrice={(price)=> {handdleTopping(price)}} data-testid="p-2"/>
                 <OrderEntry text="Cherries $1" price={1} name={"topping"} onPrice={(price)=> {handdleTopping(price)}} data-testid="p-2.1"/>
                 <OrderEntry text="M&Ms $2" price={2} name={"topping"} onPrice={(price)=> {handdleTopping(price)}} data-testid="p-2.2"/>
-                <OrderEntry text="Hot fudge $1" price={2} name={"topping"} onPrice={(price)=> {handdleTopping(price)}} data-testid="p-2.3"/>
+                <OrderEntry text="Hot fudge $1" price={1} name={"topping"} onPrice={(price)=> {handdleTopping(price)}} data-testid="p-2.3"/>
             </Row>
             <H2 data-testid="h2-3">
-                Total: {total}
+                Total: {ejemplo.total}
             </H2>
             <Column data-testid="column-1">
                 <Row data-testid="row-3">
