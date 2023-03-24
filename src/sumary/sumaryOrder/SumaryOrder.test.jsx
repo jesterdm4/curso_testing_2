@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from "@testing-library/user-event";
 import SumaryOrder from './SumaryOrder';
 
-test("checking_if_texts_and_buttons/inputs_exist", () => {
+test("checking if form exist", () => {
   render(<SumaryOrder />);
 
     //check if form its in the component

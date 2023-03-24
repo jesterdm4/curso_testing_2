@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import OrderEntry from "../../orderEntry/OrderEntry";
 
@@ -46,8 +46,10 @@ const SumaryOrder = () => {
 
     const [isGrayButtonColor, setIsGrayButtonColor] = useState(true);
     const [isDisable, setIsDisable] = useState(true);
-    const [ejemplo, setEjemplo] = useState({flavor:0, topping:0, total:0});
-
+    const [total, setTotal] = useState(0);
+    const [flavor , setFlavor] = useState(0)
+    const [topping , setTopping] = useState(0)
+    
     const toggle = ()=> {
         setIsGrayButtonColor(!isGrayButtonColor);
         setIsDisable(!isDisable);
@@ -67,20 +69,21 @@ const SumaryOrder = () => {
     };
 
     const handdleFlavor = num => {
-        setEjemplo( prevState => {
-            return{
-                ...prevState, ...{flavor: num, total: num + ejemplo.topping}
-            }
-        });
+        setFlavor(num);
     };    
 
     const handdleTopping = num => {
-        setEjemplo( prevState => {
-            return{
-                ...prevState, ...{topping: num, total: num + ejemplo.flavor}
-            }
-        });
+        setTopping(num);
     };    
+
+    useEffect(() => {
+        const calcker = () => {
+            setTotal(flavor + topping);
+        };
+
+        calcker()
+    }, [flavor, topping])
+    
 
     return (
         <form data-testid="form-1">
@@ -91,21 +94,21 @@ const SumaryOrder = () => {
                 Scoops
             </H2>
             <Row data-testid="row-1">
-                <OrderEntry text="Chocolate $6" price={6} name={"flavor"} onPrice={(price)=> {handdleFlavor(price)}} data-testid="p-1"/>
-                <OrderEntry text="Vanilla $3" price={3} name={"flavor"} onPrice={(price)=> {handdleFlavor(price)}} data-testid="p-1.1"/>
-                <OrderEntry text="Mint drop $5" price={5} name={"flavor"} onPrice={(price)=> {handdleFlavor(price)}} data-testid="p-1.2"/>
+                <OrderEntry text="Chocolate $6" price={6} name={"sabor"} onPrice={(price)=> {handdleFlavor(price)}} data-testid="p-1"/>
+                <OrderEntry text="Vanilla $3" price={3} name={"sabor"} onPrice={(price)=> {handdleFlavor(price)}} data-testid="p-1.1"/>
+                <OrderEntry text="Mint drop $5" price={5} name={"sabor"} onPrice={(price)=> {handdleFlavor(price)}} data-testid="p-1.2"/>
             </Row>
             <H2 data-testid="h2-2">
                 Toppings
             </H2>
             <Row data-testid="row-2">
-                <OrderEntry text="Gummy bears $0.5" price={0.5} name={"topping"} onPrice={(price)=> {handdleTopping(price)}} data-testid="p-2"/>
-                <OrderEntry text="Cherries $1" price={1} name={"topping"} onPrice={(price)=> {handdleTopping(price)}} data-testid="p-2.1"/>
-                <OrderEntry text="M&Ms $2" price={2} name={"topping"} onPrice={(price)=> {handdleTopping(price)}} data-testid="p-2.2"/>
-                <OrderEntry text="Hot fudge $1" price={1} name={"topping"} onPrice={(price)=> {handdleTopping(price)}} data-testid="p-2.3"/>
+                <OrderEntry text="Gummy bears $0.5" price={4} data-testid="p-2"/>
+                <OrderEntry text="Cherries $1" price={4} data-testid="p-2.1"/>
+                <OrderEntry text="M&Ms" price={4} data-testid="p-2.2"/>
+                <OrderEntry text="Hot fudge" price={4} data-testid="p-2.3"/>
             </Row>
             <H2 data-testid="h2-3">
-                Total: {ejemplo.total}
+                Total: {total}
             </H2>
             <Column data-testid="column-1">
                 <Row data-testid="row-3">
