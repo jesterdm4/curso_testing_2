@@ -1,22 +1,24 @@
-import React from "react";
-import styled from 'styled-components';
-import SumaryOrder from "../src/sumary/sumaryOrder/SumaryOrder";
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-
-  const Wrapper = styled.div`
-    display: flex;
-    background-color: green;
-    margin: 5px;
-    padding-left: 5px;
-    border: solid 5px yellow;
-    color: white;
-  `;
-
   return (
-    <Wrapper>
-      <SumaryOrder />
-    </Wrapper>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
 }
 

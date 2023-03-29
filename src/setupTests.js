@@ -2,16 +2,16 @@
 // allows you to do things like:
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
 
+// src/setupTests.js
+import { server } from "./mocks/server.js";
+// Establish API mocking before all tests.
+beforeAll(() => server.listen());
 
-import { server } from "./moks/server";
-//establish API mocking before all tests.
-beforeAll(() => server.listen())
+// Reset any request handlers that we may add during the tests,
+// so they don't affect other tests.
+afterEach(() => server.resetHandlers());
 
-//reset any request handlers that we may add during the test
-//so they dont affect other tests
-afterEach(() => server.resetHandlers())
-
-//clean up after the test are finished
-afterAll(() => server.close())
+// Clean up after the tests are finished.
+afterAll(() => server.close());
